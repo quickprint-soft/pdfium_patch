@@ -15,7 +15,7 @@ SKIP_MERGE="false"
 
 
 
-cd pdfium
+cd ../pdfium
 
 if ! git remote get-url "$UPSTREAM_REMOTE" &>/dev/null; then
   echo "添加 upstream 远端：$UPSTREAM_URL"
