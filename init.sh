@@ -24,3 +24,11 @@ else
   echo ".gclient 已存在，若要关闭 v8 请确认包含 checkout_v8=False 或 custom_deps 过滤。"
   echo $PWD
 fi
+
+
+gclient sync
+
+
+
+# 找到 "# Desktop Windows: static CRT." 这行，然后替换下一行的 static_crt 为 dynamic_crt
+sed -i.bak '/# Desktop Windows: static CRT\./,+1 s/:static_crt/:dynamic_crt/' ../build/config/win/BUILD.gn
