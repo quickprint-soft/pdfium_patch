@@ -29,6 +29,14 @@ fi
 gclient sync
 
 
-
+cd pdfium
 # 找到 "# Desktop Windows: static CRT." 这行，然后替换下一行的 static_crt 为 dynamic_crt
-sed -i.bak '/# Desktop Windows: static CRT\./,+1 s/:static_crt/:dynamic_crt/' ../build/config/win/BUILD.gn
+sed -i.bak '/# Desktop Windows: static CRT\./,+1 s/:static_crt/:dynamic_crt/' ./build/config/win/BUILD.gn
+
+
+sed -i.bak '/defines += \[ "_HAS_ITERATOR_DEBUGGING=0" \]/{
+    s/^/  # /
+    a\
+      defines += [ "_HAS_ITERATOR_DEBUGGING=1" ]\
+      defines += [ "_ITERATOR_DEBUG_LEVEL=2" ]
+}' ./build/config/BUILD.gn
